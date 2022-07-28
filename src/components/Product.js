@@ -48,7 +48,7 @@ const searchProducts = products.filter((product) => {
             setSearch(e.target.value.toLowerCase());
           }}
         />
-      {products.map((product) => (
+      {searchProducts.map((product) => (
           <div className="product">
             <h6>{product.title}</h6>
             <h6>{product.category}</h6>
