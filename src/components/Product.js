@@ -54,8 +54,10 @@ const searchProducts = products.filter((product) => {
             <h6>{product.category}</h6>
             <h6>{product.price}</h6>
             <h6>{product.tags}</h6>
+            <button type="button">Add to Cart</button>
           </div>))
       }
+      
     </div>
   )
 }
