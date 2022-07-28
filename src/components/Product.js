@@ -36,6 +36,9 @@ const [products, setProducts] = useState([
       {products.map((product) => (
           <div className="product">
             <h6>{product.title}</h6>
+            <h6>{product.category}</h6>
+            <h6>{product.price}</h6>
+            <h6>{product.tags}</h6>
           </div>))
       }
     </div>
