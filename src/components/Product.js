@@ -31,6 +31,15 @@ const [products, setProducts] = useState([
         tags: "hoodie solid plain purple long baggy hood",
       }
 ]);
+const [search, setSearch] = useState("");
+const searchProducts = products.filter((product) => {
+    if (
+      product.title.toLowerCase().includes(search) ||
+      product.category.toLowerCase().includes(search)
+    ) {
+      return product;
+    }
+  });
   return (
     <div>
       {products.map((product) => (
