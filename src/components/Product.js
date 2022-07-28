@@ -1,38 +1,47 @@
 import React, { useState } from 'react'
+import { CartProvider, useCart } from "react-use-cart";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Product() {
-const [products, setProducts] = useState([
+
+function Products() {
+  const { addItem } = useCart();
+
+  const [products, setProducts] = useState([
     {
-        id: 1,
-        title: "Check Textured Coat",
-        category: "Coat",
-        price: "175",
-        tags: "coat check textured camel brown long sleeves buttoned cuffs",
-      },
-      {
-        id: 2,
-        title: "Contrast Check Coat",
-        category: "Coat",
-        price: "155",
-        tags: "coat camel black grey marl lapel collar hip flap pockets",
-      },
-      {
-        id: 3,
-        title: "White Coat",
-        category: "Coat",
-        price: "125",
-        tags: "coat camel white short sleeves double-breasted button",
-      },
-      {
-        id: 4,
-        title: "Basic Hoodie",
-        category: "Hoodie",
-        price: "55",
-        tags: "hoodie solid plain purple long baggy hood",
-      }
-]);
-const [search, setSearch] = useState("");
-const searchProducts = products.filter((product) => {
+      id: 1,
+      title: "Shirt",
+      category: "Clothes",
+      price: "300",
+    },
+    {
+      id: 2,
+      title: "Trouser",
+      category: "Clothes",
+      price: "100",
+    },
+    {
+      id: 3,
+      title: "Iphone 13",
+      category: "Electronics",
+      price: "20000",
+    },
+    {
+      id: 4,
+      title: "Study desk",
+      category: "Funiture",
+      price: "5500",
+    },
+    {
+      id: 5,
+      title: "Chair",
+      category: "Funiture",
+      price: "6000",
+    },
+  ]);
+
+  const [search, setSearch] = useState("");
+
+  const searchProducts = products.filter((product) => {
     if (
       product.title.toLowerCase().includes(search) ||
       product.category.toLowerCase().includes(search)
@@ -40,26 +49,46 @@ const searchProducts = products.filter((product) => {
       return product;
     }
   });
+  
   return (
-    <div>
-        <input
+    <div className="container mt-4 mb-4">
+            <input
           className="input"
           onChange={(e) => {
             setSearch(e.target.value.toLowerCase());
           }}
         />
-      {searchProducts.map((product) => (
-          <div className="product">
-            <h6>{product.title}</h6>
-            <h6>{product.category}</h6>
-            <h6>{product.price}</h6>
-            <h6>{product.tags}</h6>
-            <button type="button">Add to Cart</button>
-          </div>))
-      }
-      
+        <div className="row mt-2 mb-2">
+        <div className="col-md-10 mt-2 mb-2"></div>
+
+
+          {searchProducts.map((product) => (
+          <div className="col-md-3 mt-2 mb-2">
+            <div className="card shadow-lg">
+              <div className="card-body">
+
+             
+            <p className="card-text">{product.title}</p>
+            <p className="card-text">ksh :{product.price}</p>
+            <p className="text-sm text-muted card-text">{product.category}</p>
+
+            <button className="btn btn-warning btn-sm" onClick={() => addItem(product)}>Add to cart</button>
+            </div>
+            </div>
+
+          </div>
+        ))}
+          <div className="col-md-2 mt-2 mb-2"></div>
+
+        </div>
+        {/* {products.map((p) => (
+          <div key={p.id}>
+            <h6>
+            <button onClick={() => addItem(p)}>Add to cart</button>
+          </div>
+        ))} */}
     </div>
   )
 }
 
-export default Product
+export default Products
