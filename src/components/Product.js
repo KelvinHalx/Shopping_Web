@@ -42,6 +42,12 @@ const searchProducts = products.filter((product) => {
   });
   return (
     <div>
+        <input
+          className="input"
+          onChange={(e) => {
+            setSearch(e.target.value.toLowerCase());
+          }}
+        />
       {products.map((product) => (
           <div className="product">
             <h6>{product.title}</h6>
